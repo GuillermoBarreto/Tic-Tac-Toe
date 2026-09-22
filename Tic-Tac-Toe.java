@@ -1,5 +1,16 @@
 import java.util.Scanner;
 
+/**
+ * A console-based two-player Tic-Tac-Toe game.
+ *
+ * <p>Players take turns entering a number from 1-9 to place their mark
+ * (X or O) on the board. The first player to get three marks in a row —
+ * horizontally, vertically, or diagonally — wins. If the board fills up
+ * with no winner, the game ends in a draw. Invalid input is rejected
+ * with a prompt to try again.</p>
+ *
+ * <p>Run with: {@code javac Tic-Tac-Toe.java && java TicTacToe}</p>
+ */
 public class TicTacToe {
     private static char[][] board = {
         {'1', '2', '3'},
