@@ -36,8 +36,12 @@ public class TicTacToe {
                 continue;
             }
 
+            if (move < 1 || move > 9) {
+                System.out.println("Invalid move! Enter a number between 1 and 9.");
+                continue;
+            }
             if (!isValidMove(move)) {
-                System.out.println("Invalid move! Try again.");
+                System.out.println("Cell " + move + " is already taken. Pick another one.");
                 continue;
             }
 
