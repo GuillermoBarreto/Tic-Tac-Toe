@@ -21,15 +21,29 @@ public class TicTacToe {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
+        boolean playAgain = true;
+        while (playAgain) {
+            resetBoard();
+            playGame(scanner);
+            playAgain = askToPlayAgain(scanner);
+        }
+
+        scanner.close();
+    }
+
+    /** Plays one full game of Tic-Tac-Toe, announcing the winner or draw. */
+    private static void playGame(Scanner scanner) {
         boolean gameRunning = true;
 
         while (gameRunning) {
             printBoard();
             System.out.println("Player " + currentPlayer + ", enter a number (1-9): ");
             int move;
-            
+
             if (scanner.hasNextInt()) {
                 move = scanner.nextInt();
+                scanner.nextLine(); // consume the rest of the line so the replay prompt reads fresh input
             } else {
                 System.out.println("Invalid input. Enter a number between 1-9.");
                 scanner.next();
@@ -58,7 +72,28 @@ public class TicTacToe {
                 switchPlayer();
             }
         }
-        scanner.close();
+    }
+
+    /**
+     * Asks whether the players want another game.
+     *
+     * @return true if the answer is "y" or "yes" (case-insensitive)
+     */
+    private static boolean askToPlayAgain(Scanner scanner) {
+        System.out.print("Play again? (y/n): ");
+        String answer = scanner.nextLine().trim();
+        return answer.equalsIgnoreCase("y") || answer.equalsIgnoreCase("yes");
+    }
+
+    /** Restores the numbered 1-9 board and gives the first turn back to X. */
+    private static void resetBoard() {
+        char cell = '1';
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                board[row][col] = cell++;
+            }
+        }
+        currentPlayer = 'X';
     }
 
     /** Prints the current board state to the console. */
