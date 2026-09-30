@@ -38,7 +38,7 @@ public class TicTacToe {
 
         while (gameRunning) {
             printBoard();
-            System.out.println("Player " + currentPlayer + ", enter a number (1-9): ");
+            System.out.print("Player " + currentPlayer + ", enter a number (1-9): ");
             int move;
 
             if (scanner.hasNextInt()) {
