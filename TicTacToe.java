@@ -44,10 +44,15 @@ public class TicTacToe {
             if (scanner.hasNextInt()) {
                 move = scanner.nextInt();
                 scanner.nextLine(); // consume the rest of the line so the replay prompt reads fresh input
-            } else {
+            } else if (scanner.hasNext()) {
                 System.out.println("Invalid input. Enter a number between 1-9.");
                 scanner.next();
                 continue;
+            } else {
+                // End of input (e.g. Ctrl-D or piped EOF): quit gracefully
+                // instead of crashing with NoSuchElementException.
+                System.out.println("\nNo more input. Thanks for playing!");
+                return;
             }
 
             if (move < 1 || move > 9) {
@@ -81,6 +86,9 @@ public class TicTacToe {
      */
     private static boolean askToPlayAgain(Scanner scanner) {
         System.out.print("Play again? (y/n): ");
+        if (!scanner.hasNextLine()) {
+            return false; // input closed: just exit instead of throwing NoSuchElementException
+        }
         String answer = scanner.nextLine().trim();
         return answer.equalsIgnoreCase("y") || answer.equalsIgnoreCase("yes");
     }
