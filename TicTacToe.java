@@ -104,13 +104,20 @@ public class TicTacToe {
         currentPlayer = 'X';
     }
 
+    /** Prints one board row, e.g. " X | O | 3". */
+    private static void printRow(int row) {
+        System.out.println(" " + board[row][0] + " | " + board[row][1] + " | " + board[row][2]);
+    }
+
     /** Prints the current board state to the console. */
     private static void printBoard() {
-        System.out.println("\n " + board[0][0] + " | " + board[0][1] + " | " + board[0][2]);
+        System.out.println();
+        printRow(0);
         System.out.println("---+---+---");
-        System.out.println(" " + board[1][0] + " | " + board[1][1] + " | " + board[1][2]);
+        printRow(1);
         System.out.println("---+---+---");
-        System.out.println(" " + board[2][0] + " | " + board[2][1] + " | " + board[2][2] + "\n");
+        printRow(2);
+        System.out.println();
     }
 
     /**
