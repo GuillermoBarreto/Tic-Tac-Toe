@@ -67,11 +67,11 @@ public class TicTacToe {
             makeMove(move);
             if (checkWin()) {
                 printBoard();
-                System.out.println("🎉 Player " + currentPlayer + " wins! 🎉");
+                System.out.println("Player " + currentPlayer + " wins!");
                 gameRunning = false;
             } else if (isBoardFull()) {
                 printBoard();
-                System.out.println("It's a draw! 🤝");
+                System.out.println("It's a draw!");
                 gameRunning = false;
             } else {
                 switchPlayer();
