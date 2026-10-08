@@ -12,10 +12,12 @@ Classic Tic-Tac-Toe game in Java, played in the console.
 javac TicTacToe.java
 java TicTacToe
 ```
+
 ## How to play
 
 Two players alternate entering a cell number (1-9). First to line up three
-marks wins; a full board with no winner is a draw.
+marks wins; a full board with no winner is a draw. After each game you are
+asked whether to play again (`y`/`n`).
 
 ```
  1 | 2 | 3
