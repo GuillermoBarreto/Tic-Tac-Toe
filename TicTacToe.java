@@ -25,15 +25,22 @@ public class TicTacToe {
         boolean playAgain = true;
         while (playAgain) {
             resetBoard();
-            playGame(scanner);
+            if (!playGame(scanner)) {
+                break; // input closed mid-game: don't prompt to replay on a dead stream
+            }
             playAgain = askToPlayAgain(scanner);
         }
 
         scanner.close();
     }
 
-    /** Plays one full game of Tic-Tac-Toe, announcing the winner or draw. */
-    private static void playGame(Scanner scanner) {
+    /**
+     * Plays one full game of Tic-Tac-Toe, announcing the winner or draw.
+     *
+     * @return false when the input stream closed mid-game (caller should exit
+     *         without asking to play again), true when the game finished normally
+     */
+    private static boolean playGame(Scanner scanner) {
         boolean gameRunning = true;
 
         while (gameRunning) {
@@ -52,7 +59,7 @@ public class TicTacToe {
                 // End of input (e.g. Ctrl-D or piped EOF): quit gracefully
                 // instead of crashing with NoSuchElementException.
                 System.out.println("\nNo more input. Thanks for playing!");
-                return;
+                return false;
             }
 
             if (move < 1 || move > 9) {
@@ -77,6 +84,7 @@ public class TicTacToe {
                 switchPlayer();
             }
         }
+        return true;
     }
 
     /**
