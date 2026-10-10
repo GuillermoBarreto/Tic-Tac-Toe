@@ -102,7 +102,7 @@ public class TicTacToe {
     }
 
     /** Restores the numbered 1-9 board and gives the first turn back to X. */
-    private static void resetBoard() {
+    /* package-visible for tests */ static void resetBoard() {
         char cell = '1';
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
@@ -131,7 +131,7 @@ public class TicTacToe {
     /**
      * Returns true if {@code move} is within 1-9 and the target cell is free.
      */
-    private static boolean isValidMove(int move) {
+    /* package-visible for tests */ static boolean isValidMove(int move) {
         if (move < 1 || move > 9) return false;
         int row = (move - 1) / 3;
         int col = (move - 1) % 3;
@@ -139,7 +139,7 @@ public class TicTacToe {
     }
 
     /** Places the current player's mark in the cell numbered {@code move}. */
-    private static void makeMove(int move) {
+    /* package-visible for tests */ static void makeMove(int move) {
         int row = (move - 1) / 3;
         int col = (move - 1) % 3;
         board[row][col] = currentPlayer;
@@ -151,7 +151,7 @@ public class TicTacToe {
     }
 
     /** Returns true if the current player has three marks in a row. */
-    private static boolean checkWin() {
+    /* package-visible for tests */ static boolean checkWin() {
         for (int i = 0; i < 3; i++) {
             if ((board[i][0] == currentPlayer && board[i][1] == currentPlayer && board[i][2] == currentPlayer) ||
                 (board[0][i] == currentPlayer && board[1][i] == currentPlayer && board[2][i] == currentPlayer)) {
@@ -163,7 +163,7 @@ public class TicTacToe {
     }
 
     /** Returns true if every cell on the board holds a player mark. */
-    private static boolean isBoardFull() {
+    /* package-visible for tests */ static boolean isBoardFull() {
         for (char[] row : board) {
             for (char cell : row) {
                 if (cell != 'X' && cell != 'O') {
